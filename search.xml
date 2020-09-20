@@ -23,6 +23,8 @@
     <url>/2020/09/18/leetcode%E7%AE%97%E6%B3%95-%E4%B8%80/</url>
     <content><![CDATA[<h1 id="剑指offer03：数组中重复的数字"><a href="#剑指offer03：数组中重复的数字" class="headerlink" title="剑指offer03：数组中重复的数字"></a><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/" target="_blank" rel="noopener">剑指offer03：数组中重复的数字</a></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在一个长度为 n 的数组 nums 里的所有数字都在 <strong>0～n-1</strong> 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
 <p>限制 : 2 &lt;= n &lt;= 100000</p>
+<a id="more"></a>
+
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
 <li><p>数组中一定有元素重复，但重复元素个数不知，重复次数不知。由于输出任意一个重复数字即可，故可排序后比较相邻元素。</p>
 </li>
