@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/07/13/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>leetcode算法(一)</title>
     <url>/2020/09/18/leetcode%E7%AE%97%E6%B3%95-%E4%B8%80/</url>
     <content><![CDATA[<h1 id="剑指offer03：数组中重复的数字"><a href="#剑指offer03：数组中重复的数字" class="headerlink" title="剑指offer03：数组中重复的数字"></a><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/" target="_blank" rel="noopener">剑指offer03：数组中重复的数字</a></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在一个长度为 n 的数组 nums 里的所有数字都在 <strong>0～n-1</strong> 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
@@ -88,7 +70,6 @@
 <li>链表中节点的数目范围是 $[0, 10^4]$</li>
 <li>$-10^5$ &lt;= Node.val &lt;= $10^5$</li>
 <li>pos 为 -1 或者链表中的一个 有效索引 。<a id="more"></a>
-
 </li>
 </ul>
 <h2 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h2><p>本问题是判断链表是否有环，这对应两种情况，即有环与无环，故存在三种结题思路：</p>
@@ -98,6 +79,38 @@
 <li><strong>快慢指针</strong> : 使用两个指针，分为快指针和慢指针，其中快指针每次前进两格，即  <code>fast = fast.next.next</code> ，慢指针每次前进一格 <code>slow = slow.next</code> ，若链表有环则快慢指针必然会相遇。否则，快指针会先达到 null 。</li>
 </ol>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">hasCycle</span><span class="params">(self, head: ListNode)</span> -&gt; bool:</span></span><br><span class="line">        <span class="keyword">if</span> head <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> head.next <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        fast = head.next</span><br><span class="line">        slow = head</span><br><span class="line">        <span class="keyword">while</span> fast != slow:</span><br><span class="line">            <span class="keyword">if</span> fast.next <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> fast.next.next <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            slow = slow.next</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode算法(四)</title>
+    <url>/2020/10/12/leetcode%E7%AE%97%E6%B3%95-%E5%9B%9B/</url>
+    <content><![CDATA[<h1 id="LeetCode142：环形链表Ⅱ"><a href="#LeetCode142：环形链表Ⅱ" class="headerlink" title="LeetCode142：环形链表Ⅱ"></a><a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/" target="_blank" rel="noopener">LeetCode142：环形链表Ⅱ</a></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>&emsp;&emsp;给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</p>
+<p>&emsp;&emsp;为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。注意，pos 仅仅是用于标识环的情况，并不会作为参数传递到函数中。</p>
+<p>提示：</p>
+<ul>
+<li>链表中节点的数目范围是 $[0, 10^4]$</li>
+<li>$-10^5$ &lt;= Node.val &lt;= $10^5$</li>
+<li>pos 为 -1 或者链表中的一个 有效索引 。<a id="more"></a>
+</li>
+</ul>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&emsp;&emsp;与上题<a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">141环形链表类似</a>，但是又有所不同，上题中只需判断是否有环即可，而在本题中需要输出第一个环所在的位置。</p>
+<ol>
+<li><strong>哈希表</strong> : 使用哈希表记录遍历的每一个结点，当遇到<strong>第一个重复</strong>的结点时，就是环开始的结点位置，将其输出即可。</li>
+<li><strong>快慢指针</strong> : 使用两个指针，快指针每次前进两格 <code>fast = fast.next.next</code> , 慢指针每次前进一格 <code>slow = slow.next</code> , 当两指针相遇时，再定义一个指针 ptr 开始从表头开始遍历，当 ptr 与慢指针 slow 相遇时，即是目标结点。</li>
+</ol>
+<p><img src="/2020/10/12/leetcode%E7%AE%97%E6%B3%95-%E5%9B%9B/142_fig1.png" alt></p>
+<p>&emsp;&emsp;如上图所示，其中 a 为链表中非环长度， b 为快慢指针相遇时已走过的环形长度，c 为未走过的距离。所以快指针走过距离为：</p>
+<script type="math/tex; mode=display">l_f = a + b + n * (b + c)</script><p>其中，n 为正整数，即相遇时走过的圈数。<br>慢指针走过距离：</p>
+<script type="math/tex; mode=display">l_s = a + b</script><p>又由于快指针走过距离为慢指针的两倍，所以有</p>
+<script type="math/tex; mode=display">l_f = 2 * l_s --> a = c + (n - 1) * (b + c)</script><p>所以，当快慢指针相遇时，只需再建一个指针指向 head ，与慢指针 slow 同时向前遍历，当相遇时，慢指针 slow 刚好走过 n 圈（快慢指针相遇时，慢指针只走过距离 b ），故二者将在环结点处相遇。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>哈希表<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detectCycle</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        dic = set()</span><br><span class="line">        node = head</span><br><span class="line">        <span class="keyword">while</span> node <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">if</span> node <span class="keyword">in</span> dic:</span><br><span class="line">                <span class="keyword">return</span> node</span><br><span class="line">            dic.add(node)</span><br><span class="line">            node = node.next</span><br><span class="line">        <span class="keyword">return</span></span><br></pre></td></tr></table></figure></p>
+<p>快慢指针<br><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detectCycle</span><span class="params">(self, head: ListNode)</span> -&gt; ListNode:</span></span><br><span class="line">        <span class="keyword">if</span> head <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> head.next <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> </span><br><span class="line">        ptr, fast, slow = head, head.next.next, head.next</span><br><span class="line">        <span class="keyword">while</span> fast != slow:</span><br><span class="line">            <span class="keyword">if</span> fast <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> fast.next <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">                <span class="keyword">return</span> </span><br><span class="line">            fast = fast.next.next</span><br><span class="line">            slow = slow.next</span><br><span class="line">        <span class="keyword">while</span> ptr != slow:</span><br><span class="line">            slow = slow.next</span><br><span class="line">            ptr = ptr.next</span><br><span class="line">        <span class="keyword">return</span> ptr</span><br></pre></td></tr></table></figure></p>
+]]></content>
       <categories>
         <category>算法</category>
       </categories>
