@@ -150,7 +150,48 @@
 <p>&emsp;&emsp;如上图所示，门限电压设为 1V , 当输入信号大于 1V 时判为有目标；反之没有。</p>
 <p>&emsp;&emsp;注意在上图中为没有噪声干扰的情况下所得结果，然而在一般情况下，信号在传播过程中都会遇到噪声，故到达接收机后需要进行处理，并根据适当的准则对输入信号做出判决。</p>
 <h3 id="2-3-数学表示"><a href="#2-3-数学表示" class="headerlink" title="2.3 数学表示"></a>2.3 数学表示</h3><p>&emsp;&emsp;假设发送端信号为 $ s(t) $, 接收端为 $ x(t) = s(t) + n(t) $<br>用 $ H_0 $ 和 $ H_1 $ 分别表示接收机的无、有信号输入的假设。<br>用 $ D_0 $ 和 $ D_1 $ 分别表示检测器作出无、有信号的判决结果。</p>
-]]></content>
+<p>则四种关系分别如下表所示</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">$ H_0 $</th>
+<th>$ H_1 $</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">$ D_0 $</td>
+<td style="text-align:center">正确不被发现</td>
+<td>漏警</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">$ D_1 $</td>
+<td style="text-align:center">虚警</td>
+<td>正确检测</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&emsp;&emsp;用 $ p(z|H_0) $ 和 $ p(z|H_1) $ 分别表示无、有信号输入时，输出端的信号电平的概率密度函数。同时，用 $ Z_0 $ 和 $ Z_1 $ 来分别表示检测器做出无、有信号判决的判决区域。</p>
+<p><img src="/2020/10/16/%E5%99%AA%E5%A3%B0%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%B7%9F%E8%B8%AA%E9%97%AE%E9%A2%98/figure2.jpg" alt></p>
+<p>&emsp;&emsp;如上图所示，门限电压(即虚线部分)将两个函数所包涵区域分为四个部分，其中</p>
+<ul>
+<li>$ \int_{Z_0}p(z|H_0)dz $ : 正确不被发现</li>
+<li>$ \int_{Z_0}p(z|H_1)dz $ : 漏警</li>
+<li>$ \int_{Z_1}p(z|H_0)dz $ : 虚警</li>
+<li>$ \int_{Z_1}p(z|H_1)dz $ : 正确检测</li>
+</ul>
+<h3 id="2-4-推导"><a href="#2-4-推导" class="headerlink" title="2.4 推导"></a>2.4 推导</h3><p>&emsp;&emsp;设虚警概率为 $ P_F $, 漏警概率为 $ P_M $, 检测概率为 $ P_D $, 则 N-P 准则为</p>
+<p>$   \begin{cases}<br>    P_F = \alpha (\alpha 一般取 0.1 ~ 0.05) \\<br>    P_M = min 或 P_D = 1 - P_M = max<br>    \end{cases}  $</p>
+<p>利用拉格朗日乘子 $ \lambda $ 构造目标函数</p>
+<script type="math/tex; mode=display">J = P_M + \lambda(P_F - \alpha)</script><script type="math/tex; mode=display">= \int_{Z_0}p(z|H_1)dz + \lambda[\int_{Z_1}p(z|H_0)dz - \alpha]dz</script><script type="math/tex; mode=display">= \int_{Z_0}p(z|H_1)dz + \lambda[1 - \int_{Z_0}p(z|H_0)dz - \alpha]dz</script><script type="math/tex; mode=display">= \lambda(1-\alpha) + \int_{Z_0} [p(z|H_1) - \lambda p(z|H_1)]dz</script>]]></content>
       <categories>
         <category>科研</category>
         <category>大四学习</category>
