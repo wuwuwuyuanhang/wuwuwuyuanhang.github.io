@@ -414,38 +414,14 @@
 
       
         
-          
-            <h1 id="卡尔曼滤波"><a href="#卡尔曼滤波" class="headerlink" title="卡尔曼滤波"></a>卡尔曼滤波</h1><p>&emsp;&emsp;传说中将阿波罗号送上月球的算法</p>
-<h2 id="1-1、定义"><a href="#1-1、定义" class="headerlink" title="1.1、定义"></a>1.1、定义</h2><p>首先来看<a href="https://baike.baidu.com/item/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2" target="_blank" rel="noopener">百度百科</a>对其定义</p>
-<blockquote>
-<p>&emsp;&emsp;卡尔曼滤波是一种利用线性状态的方程，通过系统输入输出观测数据，对系统状态进行最优估计的算法。<br>&emsp;&emsp;其是在线性状态空间表示的基础上对有噪声的输入和观测信号进行处理，求取系统状态或真实信号。</p>
-</blockquote>
-<p>&emsp;&emsp;而按照个人学习的理解，简单来讲，即在噪声干扰的环境下可以对得到目标的当前状态(位置、速度等)进行下一步的最佳的估计。</p>
-<h2 id="1-2、举例分析"><a href="#1-2、举例分析" class="headerlink" title="1.2、举例分析"></a>1.2、举例分析</h2><p>&emsp;&emsp;这里引用最为普遍的例子，运动小车的例子。<br>小车一般而言有两个状态参量，位置 p 与速度 v ，则令小车第 k 时刻的状态为</p>
-<script type="math/tex; mode=display">
-\hat { x } _ { k } = \left[ \begin{array} { l } p \\ v \end{array} \right]</script><p>&emsp;&emsp;1. 首先分析在无外力的条件下(即无外界噪声影响)，根据牛顿第一定律我们可以得到小车将做匀速直线运动，则对于 k 时刻的状态可由前一时刻，即 k - 1 时的状态预测出来，即</p>
-<script type="math/tex; mode=display">
-\left\{ \begin{array} { l } p _ { k } = p _ { k - 1 } + \Delta t \cdot v _ { k - 1 } \\ v _ { k } = v _ { k - 1 } \end{array} \right.</script><p>转换为矩阵形式，即</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \hat { x } _ { k } = \left[ \begin{array} { c } p _ { k } \\ v _ { k } \end{array} \right] & = \left[ \begin{array} { c c } 1 & \Delta t \\ 0 & 1 \end{array} \right] \left[ \begin{array} { c } p _ { k - 1 } \\ v _ { k - 1 } \end{array} \right] \\ & = F _ { k } \hat { x } _ { k - 1 } \end{aligned}</script><p>其中，$ F _ { k } $ 记为预测矩阵。</p>
-<p>&emsp;&emsp; 除了均值外，估计的数据还存在一个数学表示——方差——用于表示数据在均值周围的偏差大小。由于存在位置和速度两个变量所以，其协方差矩阵表示为</p>
-<script type="math/tex; mode=display">
-P _ { k } = \left[ \begin{array} { c c } \sum _ { p p } & \Sigma _ { p v } \\ \sum _ { v p } & \Sigma _ { v v } \end{array} \right]</script><p>根据数学中的先验知识，我们将矩阵中的每个点都乘以于矩阵 A ，则其协方差将变为</p>
-<script type="math/tex; mode=display">
-\begin{array} { l } \operatorname { Cov } ( x ) = \Sigma \\ \operatorname { Cov } ( A x ) = A \Sigma A ^ { \top } \end{array}</script><p>所以变换后有</p>
-<script type="math/tex; mode=display">
-\left\{ \begin{array} { l } \hat { x } _ { k } = F _ { k } \hat { x } _ { k - 1 } \\ P _ { k } = F _ { k } P _ { k - 1 } F _ { k } ^ { T } \end{array} \right.</script><p>&emsp;&emsp;2. 若考虑外力的影响(存在外界噪声干扰)，则设小车还存在一个加速度 a ，根据牛顿第二定律我们可以得到</p>
-<script type="math/tex; mode=display">
-\left\{ \begin{array} { l } p _ { k } = p _ { k - 1 } + \Delta t \cdot v _ { k - 1 } + \frac { \Delta t ^ { 2 } } { 2 } \cdot a \\ v _ { k } = v _ { k - 1 } + \Delta t \cdot a \end{array} \right.</script><script type="math/tex; mode=display">
-\begin{aligned} \hat { x } _ { x } & = \left[ \begin{array} { c c } 1 & \Delta t \\ 0 & 1 \end{array} \right] \hat { x } _ { k - 1 } + \left[ \begin{array} { c } \frac { \Delta t ^ { 2 } } { 2 } \\ \Delta t \end{array} \right] \cdot a \\ & = F _ { k } \hat { x } _ { k - 1 } + B _ { k } \vec { u } _ { k } \end{aligned}</script><p>其中，$ B _ k $ 是控制矩阵，$ \vec { u } _ { k } $ 是控制向量。</p>
-<p>&emsp;&emsp;同样，噪声也会存在不确定性，即存在方差，记作 $ Q _ k $ (噪声 $ w _ k \sim N(0, Q _ k) $)，最终有</p>
-<script type="math/tex; mode=display">
-\left\{ \begin{array} { l } \hat { x } _ { k } = F _ { k } \hat { x } _ { k - 1 } + B _ { k } \vec { u } _ { k } \\ P _ { k } = F _ { k } P _ { k - 1 } F _ { k } ^ { T } + Q _ { k } \end{array} \right.</script><ul>
-<li>新的最佳估计是基于<strong>原最佳估计</strong>和<strong>已知外部影响</strong>校正后得到的预测</li>
-<li>新的不确定性是基于<strong>原不确定性</strong>和<strong>外部环境的不确定性</strong>得到的预测</li>
-</ul>
-<h2 id="1-3、-实际应用"><a href="#1-3、-实际应用" class="headerlink" title="1.3、 实际应用"></a>1.3、 实际应用</h2>
-          
+          <h1 id="卡尔曼滤波"><a href="#卡尔曼滤波" class="headerlink" title="卡尔曼滤波"></a>卡尔曼滤波</h1><p>&emsp;&emsp;传说中将阿波罗号送上月球的算法</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/10/22/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
