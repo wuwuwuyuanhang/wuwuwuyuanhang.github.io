@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数组," />
+  <meta name="keywords" content="matlab,目标检测跟踪,恒虚检测,卡尔曼滤波," />
 
 
 
@@ -79,16 +79,19 @@
 
 
 
-<meta name="description" content="剑指offer04：二维数组中的查找问题描述在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 限制：0 &lt;&#x3D; n &lt;&#x3D; 10000 &lt;&#x3D; m &lt;&#x3D; 1000">
+<meta name="description" content="卡尔曼滤波&amp;emsp;&amp;emsp;传说中将阿波罗号送上月球的算法 1.1、定义首先来看百度百科对其定义  &amp;emsp;&amp;emsp;卡尔曼滤波是一种利用线性状态的方程，通过系统输入输出观测数据，对系统状态进行最优估计的算法。&amp;emsp;&amp;emsp;其是在线性状态空间表示的基础上对有噪声的输入和观测信号进行处理，求取系统状态或真实信号。  &amp;emsp;&amp;emsp;而按照个人学习的理解，简单来讲，即在噪">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode算法(二)">
-<meta property="og:url" content="http://yoursite.com/2020/09/20/leetcode%E7%AE%97%E6%B3%95-%E4%BA%8C/index.html">
+<meta property="og:title" content="卡尔曼滤波">
+<meta property="og:url" content="http://yoursite.com/2020/10/22/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/index.html">
 <meta property="og:site_name" content="Wuwuwu的博客">
-<meta property="og:description" content="剑指offer04：二维数组中的查找问题描述在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 限制：0 &lt;&#x3D; n &lt;&#x3D; 10000 &lt;&#x3D; m &lt;&#x3D; 1000">
-<meta property="article:published_time" content="2020-09-20T07:44:30.000Z">
-<meta property="article:modified_time" content="2020-09-20T07:55:41.037Z">
+<meta property="og:description" content="卡尔曼滤波&amp;emsp;&amp;emsp;传说中将阿波罗号送上月球的算法 1.1、定义首先来看百度百科对其定义  &amp;emsp;&amp;emsp;卡尔曼滤波是一种利用线性状态的方程，通过系统输入输出观测数据，对系统状态进行最优估计的算法。&amp;emsp;&amp;emsp;其是在线性状态空间表示的基础上对有噪声的输入和观测信号进行处理，求取系统状态或真实信号。  &amp;emsp;&amp;emsp;而按照个人学习的理解，简单来讲，即在噪">
+<meta property="article:published_time" content="2020-10-22T08:32:07.000Z">
+<meta property="article:modified_time" content="2020-10-28T11:48:43.807Z">
 <meta property="article:author" content="Wuwuwu">
-<meta property="article:tag" content="数组">
+<meta property="article:tag" content="matlab">
+<meta property="article:tag" content="目标检测跟踪">
+<meta property="article:tag" content="恒虚检测">
+<meta property="article:tag" content="卡尔曼滤波">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/09/20/leetcode算法-二/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/10/22/卡尔曼滤波/"/>
 
 
 
 
 
-  <title>leetcode算法(二) | Wuwuwu的博客</title>
+  <title>卡尔曼滤波 | Wuwuwu的博客</title>
   
 
 
@@ -296,7 +299,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/20/leetcode%E7%AE%97%E6%B3%95-%E4%BA%8C/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/22/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Wuwuwu">
@@ -313,7 +316,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode算法(二)</h1>
+          <h1 class="post-title" itemprop="name headline">卡尔曼滤波</h1>
         
 
         <div class="post-meta">
@@ -325,8 +328,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-09-20T15:44:30+08:00">
-                2020-09-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-10-22T16:32:07+08:00">
+                2020-10-22
               </time>
             
 
@@ -348,8 +351,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/%E7%A7%91%E7%A0%94/" itemprop="url" rel="index">
+                    <span itemprop="name">科研</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%91%E7%A0%94/%E5%A4%A7%E5%9B%9B%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">大四学习</span>
                   </a>
                 </span>
 
@@ -379,7 +393,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  301
+                  917
                 </span>
               
 
@@ -404,17 +418,36 @@
       
 
       
-        <h1 id="剑指offer04：二维数组中的查找"><a href="#剑指offer04：二维数组中的查找" class="headerlink" title="剑指offer04：二维数组中的查找"></a><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/" target="_blank" rel="noopener">剑指offer04：二维数组中的查找</a></h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>在一个 n * m 的二维数组中，每一行都按照<strong>从左到右递增</strong>的顺序排序，每一列都按照<strong>从上到下递增</strong>的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-<p>限制：<br>0 &lt;= n &lt;= 1000<br>0 &lt;= m &lt;= 1000</p>
-<a id="more"></a>
-
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
-<li><p>由于 n , m 取值范围在 1000 以内，所以可以考虑枚举法，依次循环查找。</p>
-</li>
-<li><p>从右上角看( matrix[0][m - 1] )来看，是二叉搜索树(左子树均比父节点小，右子树均比父节点大)。所以遇到比当前位置大的数即向下搜索( j + 1 )，如遇比当前位置小的数即向左搜索( i - 1 )</p>
-</li>
-</ol>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findNumberIn2DArray</span><span class="params">(self, matrix: List[List[int]], target: int)</span> -&gt; bool:</span></span><br><span class="line">        <span class="keyword">if</span> matrix <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> len(matrix) == <span class="number">0</span> <span class="keyword">or</span> len(matrix[<span class="number">0</span>]) == <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># 注意 None, [], [[]] 三种特殊情况</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        n = len(matrix)</span><br><span class="line">        m = len(matrix[<span class="number">0</span>])</span><br><span class="line">        i, j = <span class="number">0</span>, m<span class="number">-1</span></span><br><span class="line">        <span class="keyword">if</span> target &lt; matrix[<span class="number">0</span>][<span class="number">0</span>] <span class="keyword">or</span> target &gt; matrix[n<span class="number">-1</span>][m<span class="number">-1</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; n <span class="keyword">and</span> j &gt;= <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> matrix[i][j] == target:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">            <span class="keyword">elif</span> matrix[i][j] &gt; target:</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
+        <h1 id="卡尔曼滤波"><a href="#卡尔曼滤波" class="headerlink" title="卡尔曼滤波"></a>卡尔曼滤波</h1><p>&emsp;&emsp;传说中将阿波罗号送上月球的算法</p>
+<h2 id="1-1、定义"><a href="#1-1、定义" class="headerlink" title="1.1、定义"></a>1.1、定义</h2><p>首先来看<a href="https://baike.baidu.com/item/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2" target="_blank" rel="noopener">百度百科</a>对其定义</p>
+<blockquote>
+<p>&emsp;&emsp;卡尔曼滤波是一种利用线性状态的方程，通过系统输入输出观测数据，对系统状态进行最优估计的算法。<br>&emsp;&emsp;其是在线性状态空间表示的基础上对有噪声的输入和观测信号进行处理，求取系统状态或真实信号。</p>
+</blockquote>
+<p>&emsp;&emsp;而按照个人学习的理解，简单来讲，即在噪声干扰的环境下可以对得到目标的当前状态(位置、速度等)进行下一步的最佳的估计。</p>
+<h2 id="1-2、举例分析"><a href="#1-2、举例分析" class="headerlink" title="1.2、举例分析"></a>1.2、举例分析</h2><p>&emsp;&emsp;这里引用最为普遍的例子，运动小车的例子。<br>小车一般而言有两个状态参量，位置 p 与速度 v ，则令小车第 k 时刻的状态为</p>
+<script type="math/tex; mode=display">
+\hat { x } _ { k } = \left[ \begin{array} { l } p \\ v \end{array} \right]</script><p>&emsp;&emsp;1. 首先分析在无外力的条件下(即无外界噪声影响)，根据牛顿第一定律我们可以得到小车将做匀速直线运动，则对于 k 时刻的状态可由前一时刻，即 k - 1 时的状态预测出来，即</p>
+<script type="math/tex; mode=display">
+\left\{ \begin{array} { l } p _ { k } = p _ { k - 1 } + \Delta t \cdot v _ { k - 1 } \\ v _ { k } = v _ { k - 1 } \end{array} \right.</script><p>转换为矩阵形式，即</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \hat { x } _ { k } = \left[ \begin{array} { c } p _ { k } \\ v _ { k } \end{array} \right] & = \left[ \begin{array} { c c } 1 & \Delta t \\ 0 & 1 \end{array} \right] \left[ \begin{array} { c } p _ { k - 1 } \\ v _ { k - 1 } \end{array} \right] \\ & = F _ { k } \hat { x } _ { k - 1 } \end{aligned}</script><p>其中，$ F _ { k } $ 记为预测矩阵。</p>
+<p>&emsp;&emsp; 除了均值外，估计的数据还存在一个数学表示——方差——用于表示数据在均值周围的偏差大小。由于存在位置和速度两个变量所以，其协方差矩阵表示为</p>
+<script type="math/tex; mode=display">
+P _ { k } = \left[ \begin{array} { c c } \sum _ { p p } & \Sigma _ { p v } \\ \sum _ { v p } & \Sigma _ { v v } \end{array} \right]</script><p>根据数学中的先验知识，我们将矩阵中的每个点都乘以于矩阵 A ，则其协方差将变为</p>
+<script type="math/tex; mode=display">
+\begin{array} { l } \operatorname { Cov } ( x ) = \Sigma \\ \operatorname { Cov } ( A x ) = A \Sigma A ^ { \top } \end{array}</script><p>所以变换后有</p>
+<script type="math/tex; mode=display">
+\left\{ \begin{array} { l } \hat { x } _ { k } = F _ { k } \hat { x } _ { k - 1 } \\ P _ { k } = F _ { k } P _ { k - 1 } F _ { k } ^ { T } \end{array} \right.</script><p>&emsp;&emsp;2. 若考虑外力的影响(存在外界噪声干扰)，则设小车还存在一个加速度 a ，根据牛顿第二定律我们可以得到</p>
+<script type="math/tex; mode=display">
+\left\{ \begin{array} { l } p _ { k } = p _ { k - 1 } + \Delta t \cdot v _ { k - 1 } + \frac { \Delta t ^ { 2 } } { 2 } \cdot a \\ v _ { k } = v _ { k - 1 } + \Delta t \cdot a \end{array} \right.</script><script type="math/tex; mode=display">
+\begin{aligned} \hat { x } _ { x } & = \left[ \begin{array} { c c } 1 & \Delta t \\ 0 & 1 \end{array} \right] \hat { x } _ { k - 1 } + \left[ \begin{array} { c } \frac { \Delta t ^ { 2 } } { 2 } \\ \Delta t \end{array} \right] \cdot a \\ & = F _ { k } \hat { x } _ { k - 1 } + B _ { k } \vec { u } _ { k } \end{aligned}</script><p>其中，$ B _ k $ 是控制矩阵，$ \vec { u } _ { k } $ 是控制向量。</p>
+<p>&emsp;&emsp;同样，噪声也会存在不确定性，即存在方差，记作 $ Q _ k $ (噪声 $ w _ k \sim N(0, Q _ k) $)，最终有</p>
+<script type="math/tex; mode=display">
+\left\{ \begin{array} { l } \hat { x } _ { k } = F _ { k } \hat { x } _ { k - 1 } + B _ { k } \vec { u } _ { k } \\ P _ { k } = F _ { k } P _ { k - 1 } F _ { k } ^ { T } + Q _ { k } \end{array} \right.</script><ul>
+<li>新的最佳估计是基于<strong>原最佳估计</strong>和<strong>已知外部影响</strong>校正后得到的预测</li>
+<li>新的不确定性是基于<strong>原不确定性</strong>和<strong>外部环境的不确定性</strong>得到的预测</li>
+</ul>
+<h2 id="1-3、-实际应用"><a href="#1-3、-实际应用" class="headerlink" title="1.3、 实际应用"></a>1.3、 实际应用</h2>
       
     </div>
     
@@ -440,7 +473,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E6%95%B0%E7%BB%84/" rel="tag"># 数组</a>
+            <a href="/tags/matlab/" rel="tag"># matlab</a>
+          
+            <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%B7%9F%E8%B8%AA/" rel="tag"># 目标检测跟踪</a>
+          
+            <a href="/tags/%E6%81%92%E8%99%9A%E6%A3%80%E6%B5%8B/" rel="tag"># 恒虚检测</a>
+          
+            <a href="/tags/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" rel="tag"># 卡尔曼滤波</a>
           
         </div>
       
@@ -453,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/09/18/leetcode%E7%AE%97%E6%B3%95-%E4%B8%80/" rel="next" title="leetcode算法(一)">
-                <i class="fa fa-chevron-left"></i> leetcode算法(一)
+              <a href="/2020/10/16/%E5%99%AA%E5%A3%B0%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B%E8%B7%9F%E8%B8%AA%E9%97%AE%E9%A2%98/" rel="next" title="噪声环境下的目标检测跟踪问题">
+                <i class="fa fa-chevron-left"></i> 噪声环境下的目标检测跟踪问题
               </a>
             
           </div>
@@ -462,10 +501,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/10/12/leetcode%E7%AE%97%E6%B3%95-%E4%B8%89/" rel="prev" title="leetcode算法(三)">
-                leetcode算法(三) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +652,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#剑指offer04：二维数组中的查找"><span class="nav-number">1.</span> <span class="nav-text">剑指offer04：二维数组中的查找</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#卡尔曼滤波"><span class="nav-number">1.</span> <span class="nav-text">卡尔曼滤波</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1、定义"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2、举例分析"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、举例分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3、-实际应用"><span class="nav-number">1.3.</span> <span class="nav-text">1.3、 实际应用</span></a></li></ol></li></ol></div>
             
 
           </div>
