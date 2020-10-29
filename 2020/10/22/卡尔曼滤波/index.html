@@ -87,7 +87,7 @@
 <meta property="og:description" content="卡尔曼滤波&amp;emsp;&amp;emsp;传说中将阿波罗号送上月球的算法">
 <meta property="og:image" content="http://yoursite.com/2020/10/22/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/figure1.jpg">
 <meta property="article:published_time" content="2020-10-22T08:32:07.000Z">
-<meta property="article:modified_time" content="2020-10-29T07:00:31.390Z">
+<meta property="article:modified_time" content="2020-10-29T12:58:15.321Z">
 <meta property="article:author" content="Wuwuwu">
 <meta property="article:tag" content="matlab">
 <meta property="article:tag" content="目标检测跟踪">
@@ -395,7 +395,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.2k
                 </span>
               
 
@@ -461,7 +461,14 @@ P _ { k } = \left[ \begin{array} { c c } \sum _ { p p } & \Sigma _ { p v } \\ \s
 X _ {predected} \sim N ( H _ k \hat x _ k , H _ k P _ k H _ k ^ T )
 \\
 Y _ {measurement} \sim N ( z _ k , R _ k )</script><p><img src="/2020/10/22/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/figure1.jpg" alt></p>
-
+<p>在图中，黑色部分表示预测结果，蓝色部分表示测量结果，二者相乘即红色部分即为最佳估计结果。</p>
+<p>假设 $ X \sim N (\mu _ 1 , \sigma _ 1 ^ 2) , Y \sim N (\mu _ 2 , \sigma _ 2 ^ 2) $ </p>
+<script type="math/tex; mode=display">
+\left\{ \begin{array} { l } \mu ^ { \prime } = \mu _ { 1 } + \frac { \sigma _ { 1 } ^ { 2 } \left( \mu _ { 2 } - \mu _ { 1 } \right) } { \sigma _ { 1 } ^ { 2 } + \sigma _ { 2 } ^ { 2 } } \\ \sigma ^ { \prime } = \sigma _ { 1 } ^ { 2 } - \frac { \sigma _ { 1 } ^ { 4 } } { \sigma _ { 1 } ^ { 2 } + \sigma _ { 2 } ^ { 2 } } \end{array} \right.</script><p>令</p>
+<script type="math/tex; mode=display">
+k = \frac { \sigma _ { 1 } ^ { 2 } } { \sigma _ { 1 } ^ { 2 } + \sigma _ { 2 } ^ { 2 } }</script><p>有</p>
+<script type="math/tex; mode=display">
+\left\{ \begin{array} { l } \mu ^ { \prime } = \mu _ { 1 } + k \left( \mu _ { 2 } - \mu _ { 1 } \right) \\ \sigma ^ { 2 } = \sigma _ { 1 } ^ { 2 } - k \sigma _ { 1 } ^ { 2 } \end{array} \right.</script>
       
     </div>
     
